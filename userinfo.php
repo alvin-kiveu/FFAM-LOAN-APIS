@@ -8,13 +8,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $user = mysqli_fetch_array(mysqli_query($db, "SELECT * FROM aminia_users WHERE phone='$PhoneNumber'"));
     $fullnames = $user['fullnames'];
     $phone = $user['phone'];
+    $nationalty = $user['nationality'];
+    $nationalid = $user['nationalId'];
+    $bank = $user['bank'];
+    $bankAccount = $user['bankAccount'];
     $ResultCode = "Success";
     $massage = "user info fetched sucessfuly successfully.";
     $response = array(
         'ResultCode' => $ResultCode,
         'massage' => $massage,
         'userFullName' => $fullnames,
-        'userPhoneNumber' => $phone
+        'userPhoneNumber' => $phone,
+        'nationalty' => $nationalty,
+        'nationalId' => $nationalid,
+        'bank' => $bank,
+        ' ' =>  $bankAccount,
     );
 } else {
     $ResultCode = "Error";

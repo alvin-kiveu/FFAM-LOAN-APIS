@@ -6,7 +6,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $submitedData = json_decode($EncodeData, true);
     $fullnames  = mysqli_escape_string($db, $submitedData['filenames']);
     $phonenumber = mysqli_escape_string($db, $submitedData['linenumber']);
+    $nationality = mysqli_escape_string($db, $submitedData['nationality']);
+    $nationalId = mysqli_escape_string($db, $submitedData['nationalId']);
+    $bank = mysqli_escape_string($db, $submitedData['bank']);
+    $bankAccount = mysqli_escape_string($db, $submitedData['bankAccount']);
     $passwordsent = mysqli_escape_string($db, $submitedData['password']);
+
+
+
     $confirmPassword = mysqli_escape_string($db, $submitedData['conformists']);
     if (strlen($phonenumber)  == 10) {
         $check_phone = mysqli_fetch_array(mysqli_query($db, "SELECT * FROM aminia_users WHERE phone='$phonenumber'"));
@@ -20,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         } else {
             $password1 = md5($passwordsent);
             $password = '$%&£~f052gf#9*\,bchj' . $password1 . 'hjklzxcvbnm!*%&^%$£@';
-            $registration = mysqli_query($db, "INSERT INTO aminia_users(fullnames,phone,password) VALUE('$fullnames','$phonenumber','$password')");
+            $registration = mysqli_query($db, "INSERT INTO aminia_users(fullnames,phone,nationality,nationalId,bank,bankAccount,password) VALUE('$fullnames','$phonenumber','$nationality','$nationalId','$bank','$bankAccount','$password')");
             $messagesent = "Welcome  $fullnames  to Aminia Farm Loan Application";
             $phone =  '254' . (int)$phonenumber;
             $curl = curl_init();
