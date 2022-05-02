@@ -24,6 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             'errorMessage' => $massage
         );
     } else {
+        mysqli_query($db, "INSERT INTO aminia_loan(phonenumber,typeOfFarming,periodOfFarming,scaleOfFarming,product,amount,paymentMethod,paymentDuration,actionTaken,loanStatus) VALUES('$linenumber','$typeOfFarming','$periodOfFarming','$scaleOfFarming','$product','$amount','$paymentMethod','$paymentDuration','$actionTaken','Active')");
+        mysqli_query($db, "UPDATE aminia_users SET balance='$amount' WHERE phone='$linenumber'");
         $ResultCode = "Success";
         $massage = "Loan application is a success";
         $response = array(
