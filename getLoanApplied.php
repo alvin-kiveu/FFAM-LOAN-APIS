@@ -20,7 +20,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $paymentDuration = $loan['paymentDuration'];
         $paymentMethod = $loan['paymentMethod'];
         $repaid = $loan['repaid'];
-
         $remainBalance = $loan['amount'] - $repaid;
 
 
