@@ -15,11 +15,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $periodOfFarming = $loan['periodOfFarming'];
         $scaleOfFarming = $loan['scaleOfFarming'];
         $product = $loan['product'];
-        $amount = $loan['amount'];
+        $amount = "Ksh " . $loan['amount'];
         $paymentMethod = $loan['paymentMethod'];
         $paymentDuration = $loan['paymentDuration'];
         $paymentMethod = $loan['paymentMethod'];
         $repaid = $loan['repaid'];
+
         $remainBalance = $loan['amount'] - $repaid;
 
 
@@ -35,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             'amount' => $amount,
             'paymentMethod' => $paymentMethod,
             'repaid' => $repaid,
-            'remainBalance ' => $remainBalance
+            'remainBalance' => $remainBalance
         );
     } else {
         $ResultCode = "NotActive";

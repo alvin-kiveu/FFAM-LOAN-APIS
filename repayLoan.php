@@ -13,14 +13,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($amountOfAmount  <= $balance) {
             $newBalance = $balance - $amountOfAmount;
             mysqli_query($db, "UPDATE aminia_users SET balance='$newBalance' WHERE phone='$linenumber'");
-            if ($newBalance == 0) {
-                mysqli_query($db, "UPDATE aminia_loan SET loanStatus='complete' WHERE phonenumber='$linenumber'");
-            }
+
             $getLoan =  mysqli_query($db, "SELECT * FROM aminia_loan WHERE phonenumber='$linenumber' AND loanStatus='Active'");
             $loan = mysqli_fetch_array($getLoan);
             $loanRepaid = $loan['repaid'];
             $newAmountOfAmount =  $loanRepaid  + $amountOfAmount;
             mysqli_query($db, "UPDATE aminia_loan SET repaid='$newAmountOfAmount' WHERE phonenumber='$linenumber' AND loanStatus='Active'");
+            if ($newBalance == 0) {
+                mysqli_query($db, "UPDATE aminia_loan SET loanStatus='complete' WHERE phonenumber='$linenumber'");
+            }
             $ResultCode = "Success";
             $massage = "Loan has been repaid successfuly";
             $response = array(
