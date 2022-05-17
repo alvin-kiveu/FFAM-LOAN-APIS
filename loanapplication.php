@@ -13,6 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $paymentMethod = mysqli_escape_string($db, $submitedData['paymentMethod']);
     $paymentDuration = mysqli_escape_string($db, $submitedData['paymentDuration']);
     $actionTaken = mysqli_escape_string($db, $submitedData['actionTaken']);
+    $amountWithIntrest = $amount + ($amount * 0.03);
 
     //Check if there is an exixting loan
     $checkLoan = mysqli_query($db, "SELECT * FROM aminia_loan WHERE phonenumber='$linenumber' AND loanStatus='Active'");
@@ -25,8 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             'errorMessage' => $massage
         );
     } else {
-        mysqli_query($db, "INSERT INTO aminia_loan(phonenumber,typeOfFarming,periodOfFarming,scaleOfFarming,product,amount,paymentMethod,paymentDuration,actionTaken,loanStatus) VALUES('$linenumber','$typeOfFarming','$periodOfFarming','$scaleOfFarming','$product','$amount','$paymentMethod','$paymentDuration','$actionTaken','Active')");
-        mysqli_query($db, "UPDATE aminia_users SET balance='$amount' WHERE phone='$linenumber'");
+        mysqli_query($db, "INSERT INTO aminia_loan(phonenumber,typeOfFarming,periodOfFarming,scaleOfFarming,product,amount,paymentMethod,paymentDuration,actionTaken,amountWithIntrest,loanStatus) VALUES('$linenumber','$typeOfFarming','$periodOfFarming','$scaleOfFarming','$product','$amount','$paymentMethod','$paymentDuration','$actionTaken','$amountWithIntrest','Active')");
+        mysqli_query($db, "UPDATE aminia_users SET balance='$amountWithIntrest' WHERE phone='$linenumber'");
 
         function generateConsumerSecret($length1 = 8)
         {

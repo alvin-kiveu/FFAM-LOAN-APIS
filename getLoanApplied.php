@@ -19,8 +19,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $paymentMethod = $loan['paymentMethod'];
         $paymentDuration = $loan['paymentDuration'];
         $paymentMethod = $loan['paymentMethod'];
+        $amountWithIntrest = $loan['amountWithIntrest'];
         $repaid = $loan['repaid'];
         $remainBalance = $loan['amount'] - $repaid;
+
+
 
 
         $ResultCode = "Active";
@@ -34,6 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             'product' => $product,
             'amount' => $amount,
             'paymentMethod' => $paymentMethod,
+            'amountWithIntRest' => $amountWithIntrest,
             'repaid' => $repaid,
             'remainBalance' => $remainBalance
         );
