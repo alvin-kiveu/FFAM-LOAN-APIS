@@ -24,8 +24,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $remainBalance = $loan['amount'] - $repaid;
 
 
-
-
         $ResultCode = "Active";
         $massage = "You have an active loan";
         $response = array(
