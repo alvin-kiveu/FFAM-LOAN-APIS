@@ -5,8 +5,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $EncodeData = file_get_contents('php://input');
     $submitedData = json_decode($EncodeData, true);
     $linenumber  = mysqli_escape_string($db, $submitedData['linenumber']);
-
-
     //Check if there is an exixting loan
     $checkLoan = mysqli_query($db, "SELECT * FROM aminia_loan WHERE phonenumber='$linenumber' AND loanStatus='Active'");
     if (mysqli_num_rows($checkLoan) > 0) {
@@ -21,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $paymentMethod = $loan['paymentMethod'];
         $amountWithIntrest = $loan['amountWithIntrest'];
         $repaid = $loan['repaid'];
-        $remainBalance = $loan['amount'] - $repaid;
+        $remainBalance = $loan['amountWithIntrest'] - $repaid;
 
 
         $ResultCode = "Active";

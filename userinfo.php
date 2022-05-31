@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         'nationalty' => $nationalty,
         'nationalId' => $nationalid,
         'bank' => $bank,
-        ' ' =>  $bankAccount,
+        'bankaccount' =>  $bankAccount,
     );
 } else {
     $ResultCode = "Error";

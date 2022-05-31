@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $trandactionId = "QE" . $gen;
 
-        $messagesent = "$trandactionId Confirmed you have recived Ksh $amount form AMINIA FARM LOAN APPLICATION";
+        $messagesent = "$trandactionId Confirmed you have recived Ksh  $amountWithIntrest form AMINIA FARM LOAN APPLICATION";
         $phone  = '254' . (int)$linenumber;
         //send message
         $curl = curl_init();
